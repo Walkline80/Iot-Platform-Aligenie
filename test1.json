@@ -1,0 +1,1 @@
+{"header":{"messageId":"abe4a338-3541-499d-a4f5-6073b86b1aae","name":"TurnOn","namespace":"AliGenie.Iot.Device.Control","payLoadVersion":1},"payload":{"accessToken":"97d6839ec4c918e56c278cf162cfd21f5b1228d3","attribute":"powerstate","deviceId":"1234567890","deviceType":"switch","extensions":{"link":"http://walkline.wang"},"value":"on"}}
