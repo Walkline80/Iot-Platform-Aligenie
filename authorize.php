@@ -16,6 +16,8 @@
 	$request = \OAuth2\Request::createFromGlobals();
 	$response = new \OAuth2\Response();
 
+	var_dump($_GET);
+
 	// 验证 authorize request
 	// 这里会验证client_id，redirect_uri等参数和client是否有scope
 	if (!$server->validateAuthorizeRequest($request, $response)) {
@@ -36,12 +38,29 @@
 	// 	die();
 	// }
 	
+	// if (empty($_POST)) {
+	// 	exit('
+	// 	<form method="post">
+	// 	 <label>是否授权给?</label><br />
+	// 	 <input type="submit" name="authorized" value="yes">
+	// 	 <input type="submit" name="authorized" value="no">
+	// 	 </form>  
+	// 	 <a href="/login.php?logout=1">退出登录</a>');
+	// } else {
+	// 	echo "fail";
+	// }
+
+	
 	$is_authorized = true;
 	// // 当然这部分常规是基于自己现有的帐号系统验证
 	// if (!$uid = $this->checkLogin($request)) {
 	// 	$is_authorized = false;
 	// }
 	
+
+	// redirect_uri: https://open.bot.tmall.com/oauth/callback?skillId=29830&token=MTc3NDMyNjRBRkVISU5GRFZR
+
+
 	// 这里是授权获取code，并拼接Location地址返回相应
 	// Location的地址类似：http://sxx.qkl.local/v2/oauth/cb?code=69d78ea06b5ee41acbb9dfb90500823c8ac0241d&state=xyz
 	// 这里的$uid不是上面oauth_users表的uid, 是自己系统里的帐号的id，你也可以省略该参数
