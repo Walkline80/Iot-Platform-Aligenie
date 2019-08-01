@@ -1,30 +1,27 @@
 <?php
 	require_once __DIR__ . '/server.php';
 
-
+	// 天猫精灵平台发起的申请，返回code
 	// https://walkline.wang/iot/authorize.php
 	//		?redirect_uri=https%3A%2F%2Fopen.bot.tmall.com%2Foauth%2Fcallback%3FskillId%3D29830%26token%3DMTc3NDMyNjRBRkVISU5GRFZR
 	//		&client_id=testclient
 	//		&response_type=code
 	//		&state=0.39731116525342836
 
-
-
-	// 该页面请求地址类似：
-	// http://localhost/authorize.php?response_type=code&client_id=testclient&redirect_uri=https://open.bot.tmall.com/oauth/callback&state=walkline
-	// http://sxx.qkl.local/v2/oauth/authorize?response_type=code&client_id=testclient&state=xyz&redirect_uri=http://sxx.qkl.local/v2/oauth/cb&scope=basic%20get_user_info%20upload_pic
 	$request = \OAuth2\Request::createFromGlobals();
 	$response = new \OAuth2\Response();
 
-	var_dump($_GET);
+
+	// **** 这段去掉，不需要oauth2服务器进行校验 ****
 
 	// 验证 authorize request
 	// 这里会验证client_id，redirect_uri等参数和client是否有scope
-	if (!$server->validateAuthorizeRequest($request, $response)) {
-		$response->send();
-		die;
-	}
+	// if (!$server->validateAuthorizeRequest($request, $response)) {
+	// 	$response->send();
+	// 	die;
+	// }
 
+	
 	// 显示授权登录页面
 	// if (empty($_POST)) {
 	// 	//获取client类型的storage
@@ -58,18 +55,18 @@
 	// }
 	
 
-	// redirect_uri: https://open.bot.tmall.com/oauth/callback?skillId=29830&token=MTc3NDMyNjRBRkVISU5GRFZR
-
 
 	// 这里是授权获取code，并拼接Location地址返回相应
 	// Location的地址类似：http://sxx.qkl.local/v2/oauth/cb?code=69d78ea06b5ee41acbb9dfb90500823c8ac0241d&state=xyz
 	// 这里的$uid不是上面oauth_users表的uid, 是自己系统里的帐号的id，你也可以省略该参数
-	$server->handleAuthorizeRequest($request, $response, $is_authorized, $uid);
+	$server->handleAuthorizeRequest($request, $response, $is_authorized, "111"); // $uid);
+
 //        if ($is_authorized) {
 //            // 这里会创建Location跳转，你可以直接获取相关的跳转url，用于debug
-//            $code = substr($response->getHttpHeader('Location'), strpos($response->getHttpHeader('Location'), 'code=')+5, 40);
-//            exit("SUCCESS! Authorization Code: $code :: " . $response->getHttpHeader('Location'));
+        //    $code = substr($response->getHttpHeader('Location'), strpos($response->getHttpHeader('Location'), 'code=')+5, 40);
+        //    exit("SUCCESS! Authorization Code: $code :: " . $response->getHttpHeader('Location'));
 //        }
+
 	$response->send();
 
 	// /**

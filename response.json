@@ -1,1 +1,1 @@
-{"header":{"namespace":"AliGenie.Iot.Device.Discovery","name":"DiscoveryDevicesResponse","messageId":"4744a1dc-5b61-40e8-a3da-4a7c3e3a4223","payLoadVersion":1},"payload":{"devices":[{"deviceId":"1234567890","deviceName":"\u667a\u80fd\u5f00\u5173","deviceType":"switch","zone":"\u529e\u516c\u5ba4","brand":"Walkline Hardware","modal":"wkhw_one_switch","icon":"https:\/\/walkline.wang\/logo.png","properties":[{"name":"powerstate","value":"off"}],"actions":["TurnOn","TurnOff","Query"],"extensions":{"link":"http:\/\/walkline.wang"}}]}}
+[]
