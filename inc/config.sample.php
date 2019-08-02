@@ -1,7 +1,7 @@
 <?php
-	$dsn = 'mysql:dbname=xxxxxxx;host=a.b.com';
-	$host = '';
+	$dsn = 'mysql:dbname=xxxxxxxx;host=a.b.com';
+	$db_host = '';
 	$db_name = '';
-	$username = '';
-	$password = '';
+	$db_user = '';
+	$db_pass = '';
 ?>

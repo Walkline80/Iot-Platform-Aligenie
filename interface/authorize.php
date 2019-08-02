@@ -1,5 +1,6 @@
 <?php
 	require_once __DIR__ . '/server.php';
+	require_once('../controller/server.php');
 
 	// 天猫精灵平台发起的申请，返回code
 	// https://walkline.wang/iot/authorize.php
@@ -49,17 +50,24 @@
 
 	
 	$is_authorized = true;
-	// // 当然这部分常规是基于自己现有的帐号系统验证
+
+	var_dump($request);
+	return;
+	if (empty($_POST)) {
+		exit(get_login_h5());
+	}
+	
+	// 当然这部分常规是基于自己现有的帐号系统验证
 	// if (!$uid = $this->checkLogin($request)) {
 	// 	$is_authorized = false;
 	// }
 	
-
+	$uuid = $_POST['uuid'];
 
 	// 这里是授权获取code，并拼接Location地址返回相应
 	// Location的地址类似：http://sxx.qkl.local/v2/oauth/cb?code=69d78ea06b5ee41acbb9dfb90500823c8ac0241d&state=xyz
 	// 这里的$uid不是上面oauth_users表的uid, 是自己系统里的帐号的id，你也可以省略该参数
-	$server->handleAuthorizeRequest($request, $response, $is_authorized, "111"); // $uid);
+	$server->handleAuthorizeRequest($request, $response, $is_authorized, $uuid);
 
 //        if ($is_authorized) {
 //            // 这里会创建Location跳转，你可以直接获取相关的跳转url，用于debug

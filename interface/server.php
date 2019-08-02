@@ -7,7 +7,7 @@
 	require_once('../inc/config.php');
 	OAuth2\Autoloader::register();
 
-	$storage = new \OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+	$storage = new \OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $db_user, 'password' => $db_pass));
 
 	// 通过存储对象或对象数组存储的oauth2服务器类
 	$server = new \OAuth2\Server($storage);
