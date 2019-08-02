@@ -1,12 +1,12 @@
 <?php
-	include_once('config.php');
-
 	// 错误报告（这毕竟是一个演示！）
 	ini_set('display_errors',1);error_reporting(E_ALL);
 
 	// 自动加载
 	require_once('OAuth2/Autoloader.php');
+	require_once('../inc/config.php');
 	OAuth2\Autoloader::register();
+
 	$storage = new \OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
 
 	// 通过存储对象或对象数组存储的oauth2服务器类

@@ -7,7 +7,7 @@
 	use OAuth2\Response;
 
 	$post_str = file_get_contents("php://input");
-	file_put_contents("test1.json", $post_str);
+	file_put_contents("gate.json", $post_str);
 
 	$json_obj = json_decode($post_str, true);
 

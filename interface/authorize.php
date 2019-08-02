@@ -13,7 +13,7 @@
 
 
 	// **** 这段去掉，不需要oauth2服务器进行校验 ****
-
+	//
 	// 验证 authorize request
 	// 这里会验证client_id，redirect_uri等参数和client是否有scope
 	// if (!$server->validateAuthorizeRequest($request, $response)) {
