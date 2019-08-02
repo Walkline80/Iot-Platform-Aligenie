@@ -14,13 +14,16 @@
 		<div class="container" style="margin-top:20px;">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="form-group">
-						<input type="email" class="form-control" id="text_email" placeholder="输入邮箱地址" />
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" id="text_password" placeholder="输入登录密码" />
-					</div>
-					<button class="btn btn-primary btn-block" id="button_login">登录</button>
+					<form method="post" onsubmit="return check_input_values();">
+						<div class="form-group">
+							<input type="email" class="form-control" id="text_email" name="username" value="" placeholder="输入邮箱地址" />
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="text_password" value="" placeholder="输入登录密码" />
+							<input type="hidden" id="text_password_md5" name="password" value="" />
+						</div>
+						<button type="submit" class="btn btn-primary btn-block" id="button_login">登录</button>
+					</form>
 				</div>
 			</div>
 
@@ -54,36 +57,27 @@
 		<script language="javascript">
 			var email = $("#text_email"),
 				password = $("#text_password"),
+				password_md5 = $("#text_password_md5"),
 				button = $("#button_login");
 
 			$(document).ready(function () {
-				button.on("click", function () {
-					if (check_input_values()) {
-						$.post("https://walkline.wang/iot/inc/api/platform/v1/get_user_id", {
-							username: email.val(),
-							password: $.md5(password.val())
-						}, function (result) {
-							if (!result.error_code) {
-								// alert(result.uuid);
-								$.post(location.href, {uuid: result.uuid}, function () {});
-							} else {
-								alert(result.error_msg);
-							}
-						})
-					}
-				});
+				// check_input_values();
 			});
 
-			function check_input_values() {
+			function check_input_values(event) {
 				if (email.val() === "") {
 					alert("email 不能为空");
+					email.focus();
 					return false;
 				}
 
 				if (password.val() === "") {
 					alert("password 不能为空");
+					password.focus();
 					return false;
 				}
+
+				password_md5.val($.md5(password.val()));
 
 				return true;
 			}
