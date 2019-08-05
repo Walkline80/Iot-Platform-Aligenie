@@ -7,7 +7,7 @@
 		return $content;
 	}
 
-	function get_user_id($param) {
+	function get_user_id_for_platform($param) {
 		$result = post_url_data("http://walkline.wang/iot/inc/api/platform/v1/get_user_id", $param);
 
 		$jsonObject = json_decode($result, true);
@@ -17,6 +17,26 @@
 		} else {
 			return $jsonObject['uuid'];
 		}
+	}
+
+	function get_user_id_for_aligenie($accessToken) {
+		global $mysqli;
+
+		$query = "SELECT
+			user_id
+		FROM
+			oauth_access_tokens
+		WHERE
+			access_token = ?";
+
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("s", $accessToken);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($uuid);
+		$stmt->fetch();
+
+		return $uuid;
 	}
 
 	function post_url_data($url, $params) {

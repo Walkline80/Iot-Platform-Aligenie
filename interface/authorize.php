@@ -1,6 +1,7 @@
 <?php
 	require_once __DIR__ . '/server.php';
 	require_once('../controller/server.php');
+	require_once('../inc/function.php');
 
 	// 天猫精灵平台发起的申请，返回code
 	// https://walkline.wang/iot/authorize.php
@@ -8,6 +9,8 @@
 	//		&client_id=testclient
 	//		&response_type=code
 	//		&state=0.39731116525342836
+
+	logger("authorize", $_REQUEST);
 
 	$request = \OAuth2\Request::createFromGlobals();
 	$response = new \OAuth2\Response();
@@ -29,7 +32,7 @@
 	}
 	
 	$is_authorized = true;
-	$uuid = get_user_id($_POST);
+	$uuid = get_user_id_for_platform($_POST);
 
 	$server->handleAuthorizeRequest($request, $response, $is_authorized, $uuid);
 
