@@ -16,3 +16,15 @@
 		"value": "on"
 	}
 }
+
+{
+	"header": {
+		"messageId": "7d6387b9-b9f5-4c47-af86-33b364ee26bf",
+		"name": "DiscoveryDevices",
+		"namespace": "AliGenie.Iot.Device.Discovery",
+		"payLoadVersion": 1
+	},
+	"payload": {
+		"accessToken": "14d933b6a08b4af4c9349ff020f28607babb1153"
+	}
+}
